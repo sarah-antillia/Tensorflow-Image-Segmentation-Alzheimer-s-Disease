@@ -13,7 +13,7 @@ Segmentation for test images of 512x512 size by <a href="./src/TensorflowUNet.py
 <br>
 <br>
 In this experiment, we have used the simple UNet Model 
-<a href="./src/TensorflowUNet.py">TensorflowSlightlyFlexibleUNet</a> for this Colorectal-Cancer Segmentation.<br>
+<a href="./src/TensorflowUNet.py">TensorflowSlightlyFlexibleUNet</a> for this Alzheimers-Disease Segmentation.<br>
 As shown in <a href="https://github.com/sarah-antillia/Tensorflow-Image-Segmentation-API">Tensorflow-Image-Segmentation-API</a>.
 you may try other Tensorflow UNet Models:<br>
 
@@ -60,7 +60,7 @@ https://github.com/kskim-phd/Hybrid-FAZ
 2. Alzheimers-Disease ImageMask Dataset
 </a>
 </h3>
- If you would like to train this Colorectal-Cancer Segmentation model by yourself,
+ If you would like to train this Alzheimers-Disease Segmentation model by yourself,
  please download the latest normalized dataset from the google drive 
 <a href="https://drive.google.com/file/d/1yOgBhScahk4yb-xCleNFUfEG3JkXSgwi/view?usp=sharing">
 FAZ_Alzheimers-Disease-ImageMask-Dataset-V1.zip
@@ -99,9 +99,9 @@ As shown above, the number of images of train and valid dataset is not necessari
 <h2>
 3. Train TensorflowUNet Model
 </h2>
- We have trained Colorectal-Cancer TensorflowUNet Model by using the following
+ We have trained Alzheimers-Disease TensorflowUNet Model by using the following
 <a href="./projects/TensorflowSlightlyFlexibleUNet/Alzheimers-Disease/train_eval_infer.config"> <b>train_eval_infer.config</b></a> file. <br>
-Please move to ./projects/Colorectal-Cancer and run the following bat file.<br>
+Please move to ./projects/TensorflowSlightlyFlexibleUNet/Alzheimers-Disease and run the following bat file.<br>
 <pre>
 >1.train.bat
 </pre>
@@ -193,7 +193,7 @@ The training process has just been stopped at epoch 42 by an early-stopping call
 4. Evaluation
 </h3>
 Please move to a <b>./projects/TensorflowSlightlyFlexibleUNet/Alzheimers-Disease</b> folder,<br>
-and run the following bat file to evaluate TensorflowUNet model for Colorectal-Cancer.<br>
+and run the following bat file to evaluate TensorflowUNet model for Alzheimers-Disease.<br>
 <pre>
 ./2.evaluate.bat
 </pre>
@@ -215,7 +215,7 @@ binary_accuracy,0.9936
 5. Inference
 </h2>
 Please move to a <b>./projects/TensorflowSlightlyFlexibleUNet/Alzheimers-Disease</b> folder<br>
-,and run the following bat file to infer segmentation regions for images by the Trained-TensorflowUNet model for Colorectal-Cancer.<br>
+,and run the following bat file to infer segmentation regions for images by the Trained-TensorflowUNet model for Alzheimers-Disease.<br>
 <pre>
 ./3.infer.bat
 </pre>

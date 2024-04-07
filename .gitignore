@@ -4,8 +4,8 @@ __pycache__/
 *$py.class
 
 # 2024/04/08
-dataset/Alzheimers-Disease/train/
-dataset/Alzheimers-Disease/valid/
+dataset/Alzheimer's-Disease/train/
+dataset/Alzheimer's-Disease/valid/
 projects/*/*/models/
 
 # C extensions

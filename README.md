@@ -96,7 +96,6 @@ As shown above, the number of images of train and valid dataset is not necessari
 <b>train_masks_sample</b><br>
 <img src="./projects/TensorflowSlightlyFlexibleUNet/Alzheimer's-Disease/asset/train_masks_sample.png" width="1024" height="auto">
 <br>
-
 <h2>
 3. Train TensorflowUNet Model
 </h2>
@@ -189,7 +188,6 @@ The training process has just been stopped at epoch 42 by an early-stopping call
 <a href="./projects/TensorflowSlightlyFlexibleUNet/Alzheimer's-Disease/eval/train_losses.csv">train_losses.csv</a><br>
 <img src="./projects/TensorflowSlightlyFlexibleUNet/Alzheimer's-Disease/eval/train_losses.png" width="520" height="auto"><br>
 <br>
-
 <h3>
 4. Evaluation
 </h3>

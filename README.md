@@ -63,8 +63,9 @@ https://github.com/kskim-phd/Hybrid-FAZ
  If you would like to train this Alzheimers-Disease Segmentation model by yourself,
  please download the latest normalized dataset from the google drive 
 <a href="https://drive.google.com/file/d/1yOgBhScahk4yb-xCleNFUfEG3JkXSgwi/view?usp=sharing">
-FAZ_Alzheimers-Disease-ImageMask-Dataset-V1.zip
+FAZ_Alzheimers-Disease-ImageMask-Dataset-V1.zip.
 </a>
+<br>
 Please see also:<a href="https://github.com/sarah-antillia/ImageMask-Dataset-FAZ_Alzheimers-Disease">ImageMask-Dataset-FAZ_Alzheimers-Disease</a>
 <br>
 

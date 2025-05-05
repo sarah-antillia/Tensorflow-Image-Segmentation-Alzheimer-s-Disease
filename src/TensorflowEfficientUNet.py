@@ -31,10 +31,8 @@ from tensorflow.keras.models import Model
 from tensorflow.keras.applications import EfficientNetB0
 
 from TensorflowUNet import TensorflowUNet
+from ConfigParser import ConfigParser
 
-MODEL = "model"
-EVAL  = "eval"
-INFER = "infer"
 
 class TensorflowEfficientUNet(TensorflowUNet) :
 
@@ -100,7 +98,7 @@ class TensorflowEfficientUNet(TensorflowUNet) :
   def create(self, num_classes, image_height, image_width, image_channels,
                base_filters = 16, num_layers = 6):   
     print("=== TensorflowEfficientNetUNet.create ")
-    self.efficientnet = self.config.get(MODEL, "efficientnet", dvalue="B0")
+    self.efficientnet = self.config.get(ConfigParser.MODEL, "efficientnet", dvalue="B0")
     print("=== efficientnet {}".format(self.efficientnet))
 
     print("Input image_height {} image_width {} image_channels {}".format(image_height, image_width, image_channels))

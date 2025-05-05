@@ -3,10 +3,10 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-# 2024/04/08
-dataset/Alzheimer's-Disease/train/
-dataset/Alzheimer's-Disease/valid/
+# 2025/05/06
+dataset/
 projects/*/*/models/
+projects/*/*/epoch_change_infer/
 
 # C extensions
 *.so

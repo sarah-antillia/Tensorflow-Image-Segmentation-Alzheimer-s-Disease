@@ -81,15 +81,6 @@ Functions
 See also: https://github.com/tensorflow/tensorflow/blob/master/tensorflow/python/keras/engine/training.py
 """
 
-MODEL  = "model"
-TRAIN  = "train"
-INFER  = "infer"
-# 2023/06/10
-TILEDINFER = "tiledinfer"
-
-
-BEST_MODEL_FILE = "best_model.h5"
-
 class TensorflowUNet3Plus(TensorflowUNet):
 
   def __init__(self, config_file):
@@ -133,7 +124,7 @@ class TensorflowUNet3Plus(TensorflowUNet):
             base_filters = 16, num_layers = 5):
     print("=== TensorflowUNet3Plus  create ...")
     # num_layers is not unsed
-    self.dropout_rate = self.config.get(MODEL, "dropout_rate")
+    self.dropout_rate = self.config.get(ConfigParser.MODEL, "dropout_rate")
     print("=== dropout_rate {}".format(self.dropout_rate))
     output_channels = 1
     #input_shape, output_channels
@@ -276,8 +267,8 @@ if __name__ == "__main__":
      
     config   = ConfigParser(config_file)
     
-    width    = config.get(MODEL, "image_width")
-    height   = config.get(MODEL, "image_height")
+    width    = config.get(ConfigParser.MODEL, "image_width")
+    height   = config.get(ConfigParser.MODEL, "image_height")
 
     if not (width == height and  height % 128 == 0 and width % 128 == 0):
       raise Exception("Image width should be a multiple of 128. For example 128, 256, 512")

@@ -43,11 +43,7 @@ from ConfigParser import ConfigParser
 
 from TensorflowUNet import TensorflowUNet
 
-MODEL  = "model"
-TRAIN  = "train"
-INFER  = "infer"
 
-BEST_MODEL_FILE = "best_model.h5"
 
 # The methods in TensorflowSharpUNet class have been taken from
 # the following code.
@@ -107,18 +103,18 @@ class TensorflowSharpUNet (TensorflowUNet):
     print("==== TensorflowSharpUNet.create ")
     image_size = (image_width, image_height, image_channels)    
 
-    filters     = self.config.get(MODEL, "filters", dvalue= [32, 64, 128, 256])
+    filters     = self.config.get(ConfigParser.MODEL, "filters", dvalue= [32, 64, 128, 256])
     dec_filters = filters[::-1]
-    max_filter  = self.config.get(MODEL, "max_filter", dvalue=512)
+    max_filter  = self.config.get(ConfigParser.MODEL, "max_filter", dvalue=512)
     print("--- filters     {}".format(filters))
     print("--- dec_filters {}".format(dec_filters))
     print("--- max filter  {}".format(max_filter))
     
     "Unet with sharp Blocks in skip connections"
 
-    base_ksize  = self.config.get(MODEL, "base_ksize", dvalue=(3, 3))
+    base_ksize  = self.config.get(ConfigParser.MODEL, "base_ksize", dvalue=(3, 3))
     print("--- base_ksize {}".format(base_ksize))
-    dilation = self.config.get(MODEL, "dilation", dvalue=(1, 1))
+    dilation = self.config.get(ConfigParser.MODEL, "dilation", dvalue=(1, 1))
     print("--- dilation {}".format(dilation))
 
     # Kernel size for sharp blocks
@@ -184,8 +180,8 @@ if __name__ == "__main__":
      
     config   = ConfigParser(config_file)
     
-    width    = config.get(MODEL, "image_width")
-    height   = config.get(MODEL, "image_height")
+    width    = config.get(ConfigParser.MODEL, "image_width")
+    height   = config.get(ConfigParser.MODEL, "image_height")
 
     if not (width == height and  height % 128 == 0 and width % 128 == 0):
       raise Exception("Image width should be a multiple of 128. For example 128, 256, 512")

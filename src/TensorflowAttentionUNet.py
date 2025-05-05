@@ -43,11 +43,6 @@ from tensorflow.keras import Model
 from ConfigParser import ConfigParser
 from TensorflowUNet import TensorflowUNet
 
-MODEL  = "model"
-TRAIN  = "train"
-INFER  = "infer"
-
-BEST_MODEL_FILE = "best_model.h5"
 
 class TensorflowAttentionUNet(TensorflowUNet):
 
@@ -109,7 +104,7 @@ class TensorflowAttentionUNet(TensorflowUNet):
     # inputs
     print("=== TensorflowAttentionUNet.create ")
     print("Input image_height {} image_width {} image_channels {}".format(image_height, image_width, image_channels))
-    self.dropout_rate = self.config.get(MODEL, "dropout_rate", dvalue=0.1)
+    self.dropout_rate = self.config.get(ConfigParser.MODEL, "dropout_rate", dvalue=0.1)
     print("=== dropout_rate {}".format(self.dropout_rate))
 
     inputs = Input((image_height, image_width, image_channels))
@@ -163,8 +158,8 @@ if __name__ == "__main__":
 
     config   = ConfigParser(config_file)
 
-    width    = config.get(MODEL, "image_width")
-    height   = config.get(MODEL, "image_height")
+    width    = config.get(ConfigParser.MODEL, "image_width")
+    height   = config.get(ConfigParser.MODEL, "image_height")
 
     if not (width == height and  height % 128 == 0 and width % 128 == 0):
       raise Exception("Image width should be a multiple of 128. For example 128, 256, 512")

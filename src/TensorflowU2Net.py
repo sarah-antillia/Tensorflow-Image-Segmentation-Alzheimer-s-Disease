@@ -59,9 +59,6 @@ from TensorflowUNet import TensorflowUNet
 from losses import dice_coef, basnet_hybrid_loss, sensitivity, specificity
 from losses import iou_coef, iou_loss, bce_iou_loss, bce_dice_loss
 
-MODEL = "model"
-EVAL  = "eval"
-INFER = "infer"
 
 class TensorflowU2Net(TensorflowUNet) :
   
@@ -366,31 +363,31 @@ class TensorflowU2Net(TensorflowUNet) :
     deep_supervision  = False
     name              = 'u2net'
     
-    self.filter_num_begin = self.config.get(MODEL, "filter_num_begin", dvalue=128)
+    self.filter_num_begin = self.config.get(ConfigParser.MODEL, "filter_num_begin", dvalue=128)
     # number of channels in the first downsampling block; it is also the number of embedded dimensions
     
-    self.depth            = self.config.get(MODEL, "depth", dvalue=4)
+    self.depth            = self.config.get(ConfigParser.MODEL, "depth", dvalue=4)
     # the depth of SwinUNET; depth=4 means three down/upsampling levels and a bottom level 
     
-    self.stack_num_down   = self.config.get(MODEL, "stack_num_down", dvalue=2)
+    self.stack_num_down   = self.config.get(ConfigParser.MODEL, "stack_num_down", dvalue=2)
     # number of Swin Transformers per downsampling level
 
-    self.stack_num_up     = self.config.get(MODEL, "stack_num_up", dvalue=2)
+    self.stack_num_up     = self.config.get(ConfigParser.MODEL, "stack_num_up", dvalue=2)
     # number of Swin Transformers per upsampling level
     
-    self.patch_size       = self.config.get(MODEL, "patch_size", dvalue=(4,4))
+    self.patch_size       = self.config.get(ConfigParser.MODEL, "patch_size", dvalue=(4,4))
     # Extract 4-by-4 patches from the input image. Height and width of the patch must be equal.
 
-    self.num_heads        = self.config.get(MODEL, "num_heads",dvalue=[4, 8, 8, 8])
+    self.num_heads        = self.config.get(ConfigParser.MODEL, "num_heads",dvalue=[4, 8, 8, 8])
     # number of attention heads per down/upsampling level
     
-    self.window_size      = self.config.get(MODEL, "window_size")
+    self.window_size      = self.config.get(ConfigParser.MODEL, "window_size")
     #the size of attention window per down/upsampling level
     
-    self.num_mlp          = self.config.get(MODEL, "num_mlp", dvalue=512)
+    self.num_mlp          = self.config.get(ConfigParser.MODEL, "num_mlp", dvalue=512)
     # number of MLP nodes within the Transformer
     
-    self.shift_window     = self.config.get(MODEL, "shift_window")
+    self.shift_window     = self.config.get(ConfigParser.MODEL, "shift_window")
     #Apply window shifting, i.e., Swin-MSA
 
     '''

@@ -45,19 +45,12 @@ from ConfigParser import ConfigParser
 
 from TensorflowUNet import TensorflowUNet
 
-MODEL  = "model"
-TRAIN  = "train"
-INFER  = "infer"
-
-BEST_MODEL_FILE = "best_model.h5"
-
 # Define TensorflowDeepLabV3Plus class as a subclass of TensorflowUNet
 
 class TensorflowDeepLabV3Plus(TensorflowUNet):
 
   def __init__(self, config_file):
     super().__init__(config_file)
-
 
 
   def AtrousSpatialPyramidPooling(self, model_input):
@@ -180,8 +173,8 @@ if __name__ == "__main__":
 
     config   = ConfigParser(config_file)
 
-    width    = config.get(MODEL, "image_width")
-    height   = config.get(MODEL, "image_height")
+    width    = config.get(ConfigParser.MODEL, "image_width")
+    height   = config.get(ConfigParser.MODEL, "image_height")
 
     if not (width == height and  height % 128 == 0 and width % 128 == 0):
       raise Exception("Image width should be a multiple of 128. For example 128, 256, 512")

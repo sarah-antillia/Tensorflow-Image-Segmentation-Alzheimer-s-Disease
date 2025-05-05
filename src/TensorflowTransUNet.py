@@ -49,11 +49,7 @@ import sys
 # https://github.com/yingkaisha/keras-unet-collection/tree/main/keras_unet_collection
 
 from TensorflowUNet import TensorflowUNet
-
-TRAIN = "train"
-MODEL = "model"
-EVAL  = "eval"
-INFER = "infer"
+from ConfigParser import ConfigParser
 
 class TensorflowTransUNet(TensorflowUNet) :
   
@@ -326,23 +322,23 @@ class TensorflowTransUNet(TensorflowUNet) :
       print("==== TensorflowTransUNet.create ")
       input_size = (image_width, image_height, image_channels)
 
-      self.filter_num     = self.config.get(MODEL, "filter_num", dvalue=[64, 128, 256, 512])
-      self.stack_num_down = self.config.get(MODEL, "stack_num_down", dvalue=2)
-      self.stack_num_up   = self.config.get(MODEL, "stack_num_up", dvalue=2)
-      self.embed_dim      = self.config.get(MODEL, "embed_dim", dvalue=768)
-      self.num_mlp        = self.config.get(MODEL, "num_mlp", dvalue=3072)
-      self.num_heads      = self.config.get(MODEL, "num_heads", dvalue=12)
-      self.num_transformer= self.config.get(MODEL, "num_transformer", dvalue=12)
-      self.activation     = self.config.get(MODEL, "activation", dvalue='ReLU')
-      self.mlp_activation = self.config.get(MODEL, "mlp_activation", dvalue='GELU')
+      self.filter_num     = self.config.get(ConfigParser.MODEL, "filter_num", dvalue=[64, 128, 256, 512])
+      self.stack_num_down = self.config.get(ConfigParser.MODEL, "stack_num_down", dvalue=2)
+      self.stack_num_up   = self.config.get(ConfigParser.MODEL, "stack_num_up", dvalue=2)
+      self.embed_dim      = self.config.get(ConfigParser.MODEL, "embed_dim", dvalue=768)
+      self.num_mlp        = self.config.get(ConfigParser.MODEL, "num_mlp", dvalue=3072)
+      self.num_heads      = self.config.get(ConfigParser.MODEL, "num_heads", dvalue=12)
+      self.num_transformer= self.config.get(ConfigParser.MODEL, "num_transformer", dvalue=12)
+      self.activation     = self.config.get(ConfigParser.MODEL, "activation", dvalue='ReLU')
+      self.mlp_activation = self.config.get(ConfigParser.MODEL, "mlp_activation", dvalue='GELU')
       #self.output_activation='Softmax'
-      self.batch_norm     = self.config.get(MODEL, "batch_norm", dvalue=False)
-      self.pool           = self.config.get(MODEL, "pool", dvalue=True)
-      self.unpool         = self.config.get(MODEL, "pool", dvalue=True) 
-      self.backbone       = self.config.get(MODEL, "backbone", dvalue=None)
-      self.weights        = self.config.get(MODEL, "weights", dvalue='imagenet')
-      self.freeze_backbone= self.config.get(MODEL, "freeze_backbone", dvalue=True)
-      self.freeze_batch_norm=self.config.get(MODEL, "freeze_batch_norm", dvalue=True)
+      self.batch_norm     = self.config.get(ConfigParser.MODEL, "batch_norm", dvalue=False)
+      self.pool           = self.config.get(ConfigParser.MODEL, "pool", dvalue=True)
+      self.unpool         = self.config.get(ConfigParser.MODEL, "pool", dvalue=True) 
+      self.backbone       = self.config.get(ConfigParser.MODEL, "backbone", dvalue=None)
+      self.weights        = self.config.get(ConfigParser.MODEL, "weights", dvalue='imagenet')
+      self.freeze_backbone= self.config.get(ConfigParser.MODEL, "freeze_backbone", dvalue=True)
+      self.freeze_batch_norm=self.config.get(ConfigParser.MODEL, "freeze_batch_norm", dvalue=True)
 
       self.name='transunet'
 

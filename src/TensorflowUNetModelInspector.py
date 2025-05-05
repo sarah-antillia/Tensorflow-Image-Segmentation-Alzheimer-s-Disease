@@ -40,11 +40,8 @@ from TensorflowSharpUNet import TensorflowSharpUNet
 #from TensorflowBASNet    import TensorflowBASNet
 from TensorflowDeepLabV3Plus import TensorflowDeepLabV3Plus
 from TensorflowEfficientNetB7UNet import TensorflowEfficientNetB7UNet
+#from TensorflowXceptionLikeUNet import TensorflowXceptionLikeUNet
 
-
-MODEL   = "model"
-TRAIN   = "train"
-INSPECT = "inspect"
 
 if __name__ == "__main__":
   try:
@@ -57,13 +54,13 @@ if __name__ == "__main__":
 
     # Create a UNetMolde and compile
     #model   = TensorflowUNet(config_file)
-    ModelClass = eval(config.get(MODEL, "model", dvalue="TensorflowUNet"))
+    ModelClass = eval(config.get(ConfigParser.MODEL, "model", dvalue="TensorflowUNet"))
     print("=== ModelClass {}".format(ModelClass))
 
     model     = ModelClass(config_file)
         
-    model_graph = config.get(INSPECT, "model_graph", dvalue= "./model.png") 
-    summary     = config.get(INSPECT, "summary",     dvalue="./summary.txt")
+    model_graph = config.get(ConfigParser.INSPECT, "model_graph", dvalue= "./model.png") 
+    summary     = config.get(ConfigParser.INSPECT, "summary",     dvalue="./summary.txt")
     # Inspect the model.
     model.inspect(model_graph, summary)
 

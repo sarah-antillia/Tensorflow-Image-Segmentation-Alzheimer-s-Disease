@@ -1,2 +1,2 @@
-loss,0.0584
-binary_accuracy,0.9936
+loss,0.0618
+dice_coef,0.9058

@@ -29,9 +29,6 @@ from TensorflowUNet import TensorflowUNet
 
 print("TF Version: ", tf.__version__)
 
-ODEL = "model"
-EVAL  = "eval"
-INFER = "infer"
 
 class TensorflowEfficientNetB7UNet(TensorflowUNet):
 

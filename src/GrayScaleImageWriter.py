@@ -19,6 +19,7 @@
 # 2023/05/24 to-arai
 # 2024/02/22 Added self.colorize
 # 2024/03/01 Modifie save and save_resize method to use mask_to_image method.
+# 2024/04/13 Modified save_resized method to check image mode.
 
 import os
 import cv2
@@ -29,11 +30,12 @@ from PIL import Image, ImageOps
 
 class GrayScaleImageWriter:
 
-  def __init__(self, image_format=".jpg", colorize=False, black="black", white="green"):
+  def __init__(self, image_format=".jpg", colorize=False, black="black", white="green", verbose=True):
     self.image_format = image_format
     self.colorize     = colorize
     self.black   = black
     self.white   = white
+    self.verbose = verbose
 
   def mask_to_image(self, data, factor=255.0):
     h = data.shape[0]
@@ -45,49 +47,35 @@ class GrayScaleImageWriter:
     image = image.convert("RGB")
     return image
   
-  def to_pilimget(self, data):
-    h = data.shape[0]
-    w = data.shape[1]
-
-    #data = data*factor
-    data = data.reshape([w, h])
-    image = Image.fromarray(data)
-    image = image.convert("RGB")
-    return image
-
-  # 2024/04/03: Added binarize parameter
-  def save(self, data, output_dir, name, factor=255.0, binarize=True):
+  def save(self, data, output_dir, name, factor=255.0):
     image = self.mask_to_image(data, factor=factor)
- 
     image_filepath = os.path.join(output_dir, name + self.image_format)
     image.save(image_filepath)
-    print("=== Saved {}". format(image_filepath))
+    if self.verbose:
+      print("=== Saved {}". format(image_filepath))
 
-
-  def save_resized(self, data, resized, output_dir, name, factor=255.0, binarize=True):
-    if binarize :
-      image = self.binarize(data, cv2.THRESH_TRIANGLE)
+  def save_resized(self, data, resized, output_dir, name, factor=255.0):
     image = self.mask_to_image(data, factor=factor)
 
     image_filepath = os.path.join(output_dir, name + self.image_format)
-    print("== resized to {}".format(resized))
-    image = image.resize(resized)
-    if self.colorize:
-       image = image.convert("L")
 
+    if self.verbose:
+      print("== resized to {}".format(resized))
+    image = image.resize(resized)
+    #print("--- colorize {}{}".format(self.colorize, image_filepath))
+
+    if self.colorize:
+       #2024/04/13 Added the following two lines
+       if image.mode != "L":
+         image = image.convert("L")
+       #print("-----colorized----")
        image = ImageOps.colorize(image, black=self.black, white=self.white)
     image.save(image_filepath)
-    print("=== Saved {}". format(image_filepath))
+    if self.verbose:
+      print("=== Saved {}". format(image_filepath))
     return np.array(image)
-
-  def binarize(self, mask, algorithm=cv2.THRESH_OTSU):    
-    mask = mask.astype(np.uint8)
-    if  algorithm == cv2.THRESH_TRIANGLE or algorithm == cv2.THRESH_OTSU: 
-        _, mask = cv2.threshold(mask, 0, 255, algorithm)
-    if  algorithm == cv2.THRESH_BINARY or algorithm ==  cv2.THRESH_TRUNC: 
-        #_, mask = cv2.threshold(mask, 127, 255, self.algorithm)
-        _, mask = cv2.threshold(mask, 127, 255, algorithm)
-    return mask
+    
+  
     
 if __name__ == "__main__":
   try:
